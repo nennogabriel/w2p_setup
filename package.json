@@ -1,0 +1,27 @@
+{
+  "name": "w2p_setup",
+  "version": "1.0.0",
+  "description": "faster setup for web2py",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nennogabriel/w2p_setup.git"
+  },
+  "keywords": [
+    "web2py",
+    "setup",
+    "node"
+  ],
+  "author": "Pedro Moreno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nennogabriel/w2p_setup/issues"
+  },
+  "homepage": "https://github.com/nennogabriel/w2p_setup#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
