@@ -94,11 +94,9 @@ ENV/
 # Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff:
-.idea/workspace.xml
 .idea/tasks.xml
 .idea/dictionaries
-.idea/vcs.xml
-.idea/jsLibraryMappings.xml
+
 
 # Sensitive or high-churn files:
 .idea/dataSources.ids
@@ -173,7 +171,23 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
-.idea/misc.xml
-.idea/modules.xml
-.idea/w2p_setup.iml
+
 .idea/
+web2py/CHANGELOG
+web2py/LICENSE
+web2py/MANIFEST.in
+web2py/NEWINSTALL
+web2py/README.markdown
+web2py/VERSION
+web2py/anyserver.py
+web2py/applications/__init__.py
+web2py/applications/admin/
+web2py/applications/examples/
+web2py/applications/welcome/
+web2py/examples/
+web2py/extras/
+web2py/gluon/
+web2py/handlers/
+web2py/scripts/
+web2py/site-packages/
+web2py/web2py.py
