@@ -135,7 +135,6 @@ fabric.properties
 ### Node template
 # Logs
 logs
-*.log
 npm-debug.log*
 
 # Runtime data
@@ -151,9 +150,6 @@ coverage
 
 # nyc test coverage
 .nyc_output
-
-# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
 
 # node-waf configuration
 .lock-wscript
@@ -176,7 +172,6 @@ jspm_packages
 web2py/CHANGELOG
 web2py/LICENSE
 web2py/MANIFEST.in
-web2py/NEWINSTALL
 web2py/README.markdown
 web2py/VERSION
 web2py/anyserver.py
@@ -191,3 +186,7 @@ web2py/handlers/
 web2py/scripts/
 web2py/site-packages/
 web2py/web2py.py
+web2py/deposit/
+web2py/welcome.w2p
+web2py/parameters_*.py
+tmp/
