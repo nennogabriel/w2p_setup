@@ -1,0 +1,78 @@
+@charset "UTF-8"
+
+// ###################################
+// If content is the king
+// Typography is the crown?
+// Royal vestments?
+// ...
+// The shoes ?
+// ###################################
+
+// !!! DEPENDENCE !!!
+//@import ../../alpha
+
+// *** Variables ***
+$font-family-formats: eot woff2 woff truetype svg !default
+$root-font-sans-type: "humanist" !default
+$root-font-serif-type: "humanist" !default
+
+
+// extract from nib https://github.com/tj/nib
+@mixin ellipsis($no-warp: true)
+    @if $no-warp
+        white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+
+@mixin shadow-stroke($color)
+    text-shadow: -1px -1px 0 $color, 1px 1px 0 $color, 1px -1px 0 $color, -1px 1px 0 $color
+
+// very nice mixin inspired by kouto-swiss, but prefer load from js for performance.
+// Oh nice use for no-js... but... no-js, why better fonts?
+@mixin font-face($name, $font-src, $weight: false, $style: false, $formats: $font-family-formats, $svg-font-name: false)
+    @font-face
+        font-family: $name
+        @if $weight
+            font-weight: $weight
+        @if $style
+            font-style: $style
+        $_fonts: ()
+        @if index($formats, eot)
+            src: url($font-src + ".eot")
+            $_fonts: append($_fonts, url("#{$font-src}.eot?#iefix") format("embedded-opentype"), comma)
+        @if index($formats, woff2)
+            $_fonts: append($_fonts, url("#{$font-src}.woff2") format("woff2"), comma)
+        @if index($formats, woff)
+            $_fonts: append($_fonts, url("#{$font-src}.woff") format("woff"), comma)
+        @if index($formats, otf)
+            $_fonts: append($_fonts, url("#{$font-src}.otf") format("otf"), comma)
+        @if index($formats, ttf)
+            $_fonts: append($_fonts, url("#{$font-src}.ttf") format("ttf"), comma)
+        @if index($formats, svg)
+            $_svg-name: if($svg-font-name, $svg-font-name, $name)
+            $_fonts: append($_fonts, url("#{$font-src}.svg##{$_svg-name}") format("svg"), comma)
+        src: $_fonts
+
+
+@mixin font-sans-serif($font-name: null, $type: $root-font-sans-type)
+    font-family: safe-font("sans-serif", $type, $font-name)
+
+
+@mixin font-serif($font-name: null, $type: $root-font-serif-type)
+    font-family: safe-font("serif", $type, $font-name)
+
+
+@mixin font-monospace($font-name: null, $type: "monospace")
+    font-family: safe-font("other", $type, $font-name)
+
+
+@mixin hide-text()
+    text-indent: 101%
+    white-space: nowrap
+    overflow: hidden
+
+@mixin text-stroke($color: #000, $size:1px)
+    $_p: $size
+    $_n: $size * -1
+    text-shadow: $_p $_p 0 $color, $_n $_n 0 $color, $_n $_p 0 $color, $_p $_n 0 $color,

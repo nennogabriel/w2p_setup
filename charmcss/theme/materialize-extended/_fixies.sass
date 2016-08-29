@@ -1,0 +1,67 @@
+@charset "UTF-8"
+
+//general
+body
+    background: $white
+    max-width: $maximum-screen
+    margin: 0 auto
+    z-index: 1
+    +z-depth(1.5)
+
+img
+    width: auto
+    height: auto
+    &.landscape
+        height: 100%
+    &.portrait
+        width: 100%
+
+.brand-logo
+    height: $brand-size
+    img
+        height: 100%
+        padding: $brand-padding
+    display: inline-block
+    max-width: 75%
+    +relative(left, 50%)
+    left: 50%
+    transform: translateX(-50%)
+    footer &
+        left: 0
+        transform: translateX(0)
+    +scr-above($small-screen)
+        height: $brand-size-medium
+    +scr-above($medium-screen)
+        height: $brand-size-large
+
+//grid
+.row
+    margin-bottom: 0
+
+// paralax
+.parallax-container
+    z-index: 0
+
+// modal
+.modal
+    max-height: 90%
+
+//Buttons
+.btn
+    margin: 0 16px 0 0
+    &.right
+        margin: 0 0 0 16px
+    margin-bottom: 16px
+
+.dropdown-button
+    position: relative
+    &:before
+        content: " "
+        +absolute(center)
+        +arrow('down', 8px )
+        opacity: .7
+        transform: translateY(1em)
+
+// Forms
+input.select-dropdown:focus
+    text-indent: 999em

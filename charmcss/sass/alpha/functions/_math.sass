@@ -1,0 +1,22 @@
+@charset "UTF-8"
+
+// ###########################
+// less is more, more or less
+// ###########################
+
+// !!! DEPENDENCE !!!
+//@import unit
+
+// Simple but nice, Only work with Natural numbers.
+@function pow($base, $expo:1)
+    @if $expo == 0
+        @return 1
+    @else if $expo < 0
+        @warn "#{$expo} is not a Natual number. (positive only)"
+        @return $base
+    $_unit: unit($base)
+    $_n: 1
+    @for $_i from 1 through $expo
+        $_n: $_n * $base
+    @return unit-fix($_n)
+

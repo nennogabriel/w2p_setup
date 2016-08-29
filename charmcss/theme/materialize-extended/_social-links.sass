@@ -1,0 +1,21 @@
+@charset "UTF-8"
+
+
+.social-links
+    li
+        display: inline-block
+    a
+        display: inline-block
+        +size(44px)
+        background:
+            image: url($social-links-url)
+            size: auto ($social-link-size *3)
+            color: transparent
+            origin: border-box
+    @for $i from 1 through length($social-links-names)
+        .#{nth($social-links-names,$i)}
+            background-position: ((1-$i) * $social-link-size) (2 * $social-link-size)
+            +scr-above($medium-screen)
+                background-position: ((1-$i) * $social-link-size) (1 * $social-link-size)
+                +hover()
+                    background-position: ((1-$i) * $social-link-size) (2 * $social-link-size)

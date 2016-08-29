@@ -1,0 +1,27 @@
+@charset "UTF-8"
+
+// #############################################
+// Boom shee boom shee boom boom boom
+// it's the top getting up and bottom goes down
+// #############################################
+
+// !!! DEPENDENCE !!!
+//@import ../functions/rounded
+//@import ../functions/compatibility
+
+// *** Variables ***
+$root-background-color: #fff !default
+
+
+@mixin fallback-color($color, $bgcolor: $root-background-color)
+    @if alpha($color) < 1 // with opacity
+        color: get-fallback-color($color, $bgcolor)
+    color: $color
+
+
+@mixin fallback-background-color($color, $bgcolor: $root-background-color)
+    @if alpha($color) < 1 // with opacity
+        background-color:  get-fallback-color($color, $bgcolor)
+    background-color: $color
+
+

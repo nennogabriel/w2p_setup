@@ -1,0 +1,37 @@
+@charset "UTF-8"
+
+@import charmcss/sass/alpha
+@import ../../variables
+@import charmcss/theme/materialize-extended/variables
+@import charmcss/theme/materialize-0.97.7/materialize
+@import charmcss/sass/alpha
+@import ../../variables
+@import charmcss/theme/materialize-extended/variables
+@import charmcss/sass/charmcss
+@import charmcss/sass/omega
+@import charmcss/theme/materialize-extended/fixies
+@import charmcss/theme/materialize-extended/navbar
+@import charmcss/theme/materialize-extended/social-links
+@import charmcss/theme/materialize-extended/sidenav
+@import charmcss/theme/materialize-extended/footer
+@import charmcss/theme/materialize-extended/fikdik-signature
+
+
+
+footer
+    .container
+        border-bottom: 1px solid color("grey", 500)
+    .social-links a
+        border-radius: 50%
+    .brand-logo
+        height: 108px
+
+.social-links
+    a
+        transition: box-shadow .3s ease
+    +scr-above($medium-screen)
+        a
+            border: 1px solid $white
+            +hover()
+                border: none
+                +z-depth(1.5)

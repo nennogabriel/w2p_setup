@@ -1,0 +1,67 @@
+<div class="navbar-fixed">
+  <nav>
+    <div class="nav small hide-on-med-and-down">
+      <div class="container">
+        <div class="left">
+          {{if response.contact:}}
+            {{for k,v in response.contact.items():}}
+              {{if k in ('phone', 'email'):}}
+                <div class="chips">
+                  {{=MARKMIN(v, sep='', id_prefix='')}}
+                  <i class="material-icons left">{{=k}}</i>
+                </div>
+              {{pass}}
+            {{pass}}
+          {{pass}}
+        </div>
+        <div class="right">
+          {{=auth.navbar()}}
+        </div>
+      </div>
+    </div>
+    <div class="nav main">
+      <div class="container">
+        <a href="#" data-activates="nav-main-mob" class="button-collapse main"><i class="material-icons">menu</i></a>
+        <a href="#" data-activates="nav-more-mob" class="button-collapse more right"><i class="material-icons">more_vert</i></a>
+        <a href="{{=URL('default', 'index')}}" class="brand-logo">{{=THUMB(db, 'logo.x128.png')}}</a>
+        {{=MENU(response.menu, 'dropdown-nav-main', _class="hide-on-med-and-down right")}}
+      </div>
+    </div>
+  </nav>
+</div>
+
+<div id="nav-main-mob" class="side-nav">
+  <header>
+    {{if response.social_links:}}
+      <ul class="social-links">
+        {{for ref, link in response.social_links.items()[:6]:}}
+        <li><a class="{{=ref}}" href="{{=link}}"></a></li>
+        {{pass}}
+      </ul>
+    {{pass}}
+    <div class="brand-logo">{{=THUMB(db, 'logo.x128.png')}}</div>
+  </header>
+  {{=MENU(response.menu, 'dropdown-sidenav-main', _class="menu")}}
+</div>
+
+<div id="nav-more-mob" class="side-nav">
+  <header>
+    {{if response.social_links:}}
+      <ul class="social-links">
+        {{for ref, link in response.social_links.items()[::-1][:6]:}}
+        <li><a class="{{=ref}}" href="{{=link}}"></a></li>
+        {{pass}}
+      </ul>
+    {{pass}}
+    <div class="brand-logo">{{=THUMB(db, 'logo.x128.png')}}</div>
+  </header>
+  <div class="container">
+    {{for k, v in response.contact.items():}}
+    <p>
+      <i class="material-icons left">{{=k}}</i>
+      {{=MARKMIN(v, id_prefix='', sep='')}}
+    </p>
+    {{pass}}
+  </div>
+
+</div>

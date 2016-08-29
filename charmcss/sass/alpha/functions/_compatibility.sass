@@ -1,0 +1,14 @@
+@charset "UTF-8"
+
+// ######################################
+// Don't let me down!! Don't let me down.
+// ######################################
+
+// *** Variables ***
+$root-background-color: #fff !default
+
+// Simple but nice, Only work with Natural numbers.
+@function get-fallback-color($color, $bgcolor: $root-background-color)
+    $_opacity-color: rgba($color, 1)
+    $_mix: alpha($color) * 100
+    @return mix($_opacity-color, $bgcolor, $_mix)

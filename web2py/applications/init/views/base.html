@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{=T.accepted_language or T.current_languages}}" class="no-js scroll-down scroll-at-top">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+  <title>{{=response.title or request.application}}</title>
+  <link rel="canonical" href="{{=URL(args=request.args, host=True)}}"/>
+  {{if response.schema:}}
+    <script type="application/ld+json">{{=response.schema}}</script>
+  {{pass}}
+  <meta name="author" content="{{=response.meta.author}}">
+  <meta name="description" content="{{=response.meta.description}}">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="application-name" content="{{=response.meta.application}}">
+  <link rel="icon" sizes="192x192" href="{{=URL('static', 'chrome-touch-icon-192x192.png')}}">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="{{=response.meta.apple_mobile_web_app_status_bar_style}}">
+  <meta name="apple-mobile-web-app-title" content="{{=response.meta.application}}">
+  <link rel="apple-touch-icon" href="{{=URL('static', 'apple-touch-icon.png')}}">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="msapplication-TileImage" content="{{=URL('static', 'ms-touch-icon-144x144-precomposed.png')}}">
+  <meta name="msapplication-TileColor" content="{{=response.meta.theme_color}}">
+  <meta name="theme-color" content="{{=response.meta.theme_color}}">
+  <style>{{include 'layout/inline.css'}}</style>
+  {{include 'web2py_ajax.html'}}
+</head>
+<body>
+  <div id="main">{{include}}</div>
+</body>
+</html>

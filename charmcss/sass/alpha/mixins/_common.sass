@@ -1,0 +1,75 @@
+@charset "UTF-8"
+
+// ##################################
+// CSS Replacements for better render
+// ##################################
+
+// !!! DEPENDENCE !!!
+//@import ../functions/rounded
+
+// All css attributes that use any kind of size.
+@mixin width($args...)
+    width: round-list($args)
+
+@mixin height($args...)
+    height: round-list($args)
+
+@mixin max-width($args...)
+    max-width: round-list($args)
+
+@mixin max-height($args...)
+    max-height: round-list($args)
+
+@mixin min-width($args...)
+    min-width: round-list($args)
+
+@mixin min-height($args...)
+    min-height: round-list($args)
+
+@mixin opacity($args...)
+    opacity: round-list($args)
+
+@mixin text-indent($args...)
+    text-indent: round-list($args)
+
+@mixin font-weight($args...)
+    font-weight: round-list($args)
+
+@mixin font-size($args...)
+    font-size: round-list($args)
+
+@mixin padding($args...)
+    padding: round-list($args)
+
+@mixin padding-top($args...)
+    padding-top: round-list($args)
+
+@mixin padding-right($args...)
+    padding-right: round-list($args)
+
+@mixin padding-bottom($args...)
+    padding-bottom: round-list($args)
+
+@mixin padding-left($args...)
+    padding-left: round-list($args)
+
+@mixin margin($args...)
+    margin: round-list($args)
+
+@mixin margin-top($args...)
+    margin-top: round-list($args)
+
+@mixin margin-right($args...)
+    margin-right: round-list($args)
+
+@mixin margin-bottom($args...)
+    margin-bottom: round-list($args)
+
+@mixin margin-left($args...)
+    margin-left: round-list($args)
+
+@mixin border-radius($args...)
+    border-radius: round-list($args)
+
+@mixin background-size($args...)
+    background-size: round-list($args)

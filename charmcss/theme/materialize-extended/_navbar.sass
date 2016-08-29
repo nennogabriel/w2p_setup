@@ -1,0 +1,51 @@
+@charset "UTF-8"
+
+
+nav
+    background: $navbar-bg-color
+    max-width: $maximum-screen
+    +scr-above($medium-screen)
+        height: 112px
+    .button-collapse
+        color: $navbar-button-collapse
+
+
+.nav
+    &.small
+        background-color: $navbar-small-bg-color
+        color: $navbar-small-color
+        height: 32px
+        line-height: 32px
+        font-size: 12px
+        a
+            color: $navbar-small-link-color
+            +hover()
+                color: $navbar-small-hover-color
+        .chips
+            display: inline-block
+        .material-icons
+
+            margin: 0 8px
+            font-size: 14px
+            line-height: 32px
+    > .container
+        position: relative
+    +scr-above($medium-screen)
+        &.main
+            .brand-logo
+                +absolute(left)
+                transform: translatex(0)
+        > .container > ul > li > a
+            font-size: 18px
+            line-height: 80px
+            color: $navbar-link-color
+
+.navbar-fixed
+    nav
+        transition: transform .4s ease
+        .scroll-at-top &, .scroll-at-top &
+            transform: translateY(0%)
+        .scroll-down &
+            transform: translateY(-200px)
+    +scr-above($medium-screen)
+        height: 112px

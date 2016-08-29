@@ -1,0 +1,23 @@
+@charset "UTF-8"
+
+// ###################################
+// media manipulation and shortcuts
+// ###################################
+
+// !!! DEPENDENCES !!!
+//@import ../../alpha
+
+
+// *** Variables ***
+$static-path: "" !default
+
+
+@mixin image($path, $width: auto, $height: auto)
+    $path: $static-path + $path
+    background-image: url($path)
+    @if $height == auto and ($width == cover or $width == contain)
+        $height: null
+    background-size: $width $height
+
+
+//todo: make a retina-image to load a retina file as needed

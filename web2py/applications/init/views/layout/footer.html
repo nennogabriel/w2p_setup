@@ -1,0 +1,49 @@
+<footer class="page-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m4">
+        <a class="brand-logo" href="{{=URL('default', 'index')}}">{{=THUMB(db, 'logo-alt.x128.png')}}</a>
+        {{=MARKMIN(response.meta.description) if response.meta.description else ''}}
+        {{if response.social_links:}}
+          <ul class="social-links">
+            {{for ref, link in response.social_links.items():}}
+            <li><a class="{{=ref}}" href="{{=link}}"></a></li>
+            {{pass}}
+          </ul>
+        {{pass}}
+      </div>
+      <div class="col s12 m4 offset-m1">
+        <h6>{{=T('Find us')}}</h6>
+        {{if response.contact:}}
+          {{if 'phone' in response.contact:}}
+            <p>
+              <i class="material-icons left">phone</i>
+              {{=MARKMIN(response.contact['phone'], sep='', id_prefix='')}}
+            </p>
+          {{pass}}
+          {{if 'email' in response.contact:}}
+            <p>
+              <i class="material-icons left">email</i>
+              {{=MARKMIN(response.contact['email'], sep='', id_prefix='')}}
+            </p>
+          {{pass}}
+          {{if 'place' in response.contact:}}
+            <p>
+              <i class="material-icons left">place</i>
+              {{=MARKMIN(response.contact['place'], sep='', id_prefix='')}}
+            </p>
+          {{pass}}
+        {{else:}}
+        {{pass}}
+      </div>
+      <div class="col s12 m2 offset-m1 links">
+        <h6>Links</h6>
+        <ul>
+          <li><a class="modal-trigger" href="#contact_form">{{=T('Write us')}}</a></li>
+          <li><a class="modal-trigger" href="#newsletter_form">{{=T('Subscribe')}}</a></li>
+          <li><a href="#about">{{=T('About us')}}</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>

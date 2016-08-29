@@ -49,6 +49,30 @@ auth.settings.reset_password_requires_verification = not request.is_local
 if request.uri_language: T.force(request.uri_language)
 
 # -------------------------------------------------------------------------
+# Some Process
+# -------------------------------------------------------------------------
+if request.extension == 'html' and not request.ajax:
+    response.meta.application = appconfig.get('app.name')
+    response.meta.description = T(appconfig.get('app.description'))
+    response.meta.author = appconfig.get('app.author')
+    response.meta.theme_color = appconfig.get('app.theme_color')
+    response.meta.apple_mobile_web_app_status_bar_style = appconfig.get('app.apple_mobile_web_app_status_bar_style')
+
+    response.title = appconfig.get('app.name')
+    response.subtitle = appconfig.get('app.subtitle')
+    response.locales = cache.ram('ALL LOCALES', lambda: sorted([(c, i[1]) for c, i in T.get_possible_languages_info().iteritems() if c != 'default']), 60 * 60 * 24 * 7)
+
+    _ = appconfig.take('contact')
+    if _:
+        response.contact = {}
+        response.contact.update(_)
+
+    response.social_links = appconfig.take('social_links')
+    response.menu = ((T('Home'), False, URL('default', 'index')),
+                     ('Contact', False, A(T('Contact'), _class="modal-trigger", _href="#contact_form"))
+                     )
+
+# -------------------------------------------------------------------------
 # Load Plugins
 # -------------------------------------------------------------------------
 

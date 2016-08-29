@@ -1,0 +1,113 @@
+@charset "UTF-8"
+
+// #################
+// Whatch and learn
+// #################
+
+// !!! DEPENDENCE !!!
+//@import variables
+//@import helpers
+
+
+// todo: an anti-overlap function
+// todo: verify if em/rem is really need
+
+// +scr-between(min, max)
+// usage (scale can be mixed with custom values):
+//   - +scr-between(1, 3) scale:scale
+//   - +scr-between(0, 3) 0 width:scale
+//   - +scr-between(200px, 500px) custom:custom
+//   - +scr-between(0, 300px) 0 width:custom
+//   - +scr-between(1, 300px) scale:custom
+//   - +scr-between(200px, 4) custom:scale
+
+@mixin scr-between($min, $max, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    @if type-of($min) == string
+        $min: map_get($screen-scale-map, $min)
+    @if type-of($max) == string
+        $max: map_get($screen-scale-map, $max)
+    $_min: if(unitless($min) and $min !=0, nth(map_values($screen-scale-map), $min), $min)
+    $_max: if(unitless($max) and $max !=0, nth(map_values($screen-scale-map), $max), $max)
+
+    // anti-overlap  CAUTION : Use only with pixels
+    $_min: if($_min == 0, $_min, $_min + 1)
+
+    $_condition: if($_min > 0 or $_max > 0, (unquote("only screen")), ())
+    $_use-device-width: if($use-device-width, "device-", "")
+
+
+    @if $_min != 0
+        $_condition: append($_condition, unquote("(min-" + $_use-device-width + "width: " + $_min + ")"), comma)
+    @if $_max != 0 and $_max >= $_min
+        $_condition: append($_condition, unquote("(max-" + $_use-device-width + "width: " + $_max + ")"), comma)
+    @if $orientation
+        $_condition: append($_condition, unquote("(orientation: " + $orientation + ")"), comma)
+
+    $_condition-width: ""
+    @each $_i in $_condition
+        $_condition-width: $_condition-width + $_i + if(index($_condition, $_i) >= length($_condition), "", " and ")
+
+    $_medias: ()
+    $_separator: if($_condition-width != "", " and ", "")
+    @if $ratio
+        $_medias: append($_medias, unquote($_condition-width + $_separator + "(min-device-pixel-ratio: " + $ratio + ")"), comma)
+        $_medias: append($_medias, unquote($_condition-width + $_separator + "(min-resolution: " + unit-to(r($ratio * 96, 1), "dpi") + ")"), comma)
+    @if $_medias == ()
+        $_medias: $_condition-width
+    @media #{$_medias}
+        @content
+
+
+@mixin scr-at($point, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between($point, $point, $ratio, $orientation, $use-device-width)
+        @content
+
+
+@mixin scr-above($point, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between($point, 0, $ratio, $orientation, $use-device-width)
+        @content
+
+
+@mixin scr-below($point, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between(0, $point, $ratio, $orientation, $use-device-width)
+        @content
+
+
+//orientation only
+@mixin scr-landscape($ratio: null, $use-device-width: $layout-use-device-width)
+    +scr-between(0, 0, $ratio, "landscape", $use-device-width)
+        @content
+
+@mixin scr-portrait($ratio: null, $use-device-width: $layout-use-device-width)
+    +scr-between(0, 0, $ratio, "portrait", $use-device-width)
+        @content
+
+
+// use empty or with a start point to cutoff
+// like +scr-hd() get from Notebook cutoff to hd cutoff
+// but +scr-hd($screen-tablet-cutoff) get from tablet to hd, nice?
+
+@mixin scr-mobile($start: 0, $end: $screen-mobile-cutoff, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between($start, $end, $ratio, $orientation, $use-device-width)
+        @content
+
+
+@mixin scr-tablet($start: $screen-mobile-cutoff, $end: $screen-tablet-cutoff, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between($start, $end, $ratio, $orientation, $use-device-width)
+        @content
+
+
+@mixin scr-notebook($start: $screen-tablet-cutoff, $end: $screen-notebook-cutoff, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between($start, $end, $ratio, $orientation, $use-device-width)
+        @content
+
+
+@mixin scr-hd($start: $screen-notebook-cutoff, $end: $screen-hd-cutoff, $ratio: null, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between($start, $end, $ratio, $orientation, $use-device-width)
+        @content
+
+
+@mixin scr-ratio($ratio: $media-retina-ratio, $orientation: null, $use-device-width: $layout-use-device-width)
+    +scr-between(0, 0, $ratio, $orientation, $use-device-width)
+        @content
+

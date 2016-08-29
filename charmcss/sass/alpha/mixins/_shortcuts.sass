@@ -1,0 +1,90 @@
+@charset "UTF-8"
+
+// #################################
+// Hit once, get down (or up) twice
+// #################################
+
+// !!! DEPENDENCE !!!
+//@import common
+//@import fallbacks
+
+
+@mixin -pos-helper($prop, $args...)
+    position: unquote($prop)
+    @if length($args) > 0
+        @if nth($args, 1) == center
+            top: 0
+            left: 0
+            bottom: 0
+            right: 0
+            margin: auto
+        @else
+            $i: 1
+            @for $j from 1 through length($args)
+                $p: nth($args, $i)
+                @if length($args) > $i
+                    $n: nth($args, $i + 1)
+                    #{$p}: if(type-of($n) == number, $n, 0)
+                @else if length($args) == $i and type-of(nth($args,$i)) != 'number'
+                    #{$p}: 0
+                $i: $i + 1
+
+
+// Position utility.
+// Synopsis:
+//    fixed <pos> [n] <pos> [n] <pos> [n] <pos> [n]
+//
+// Usages:
+//     fixed top
+//     fixed top 5px left
+//     fixed top left 5px bottom 3px right 50px
+// extract from nib https://github.com/tj/nib
+@mixin fixed($args...)
+    +-pos-helper('fixed', $args)
+
+
+@mixin absolute($args...)
+    +-pos-helper('absolute', $args)
+
+
+@mixin relative($args...)
+    +-pos-helper('relative', $args)
+
+
+// width and height inline
+// Usage:
+// size 30% 20px
+//    yelds:
+//        width 30%
+//        heigth 20px
+// need only one argument to use both even.
+// extract from nib https://github.com/tj/nib
+@mixin size($args...)
+    +width(nth($args, 1))
+    +height(if(length($args) > 1 , nth($args, 2), nth($args, 1)))
+
+
+@mixin min-size($args...)
+    +min-width(nth($args, 1))
+    +min-height(if(length($args) > 1 , nth($args, 2), nth($args, 1)))
+
+
+@mixin max-size($args...)
+    +max-width(nth($args, 1))
+    +max-height(if(length($args) > 1 , nth($args, 2), nth($args, 1)))
+
+
+// Others combos
+@mixin color-and-bg($color, $bgcolor: null)
+    color: $color
+    background-color: if($bgcolor, $bgcolor, invert($color))
+
+
+// Very important tools
+@mixin hover($class: null)
+    @if $class
+        &:hover, &:focus, &#{$class}
+            @content
+    @else
+        &:hover, &:focus
+            @content

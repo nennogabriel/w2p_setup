@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+// ###########################################
+// The best responsisve sistem with Rupture.
+// forked on version 0.6.1
+// Look the original project at github
+// https://github.com/jenius/rupture
+// ###########################################
+
+// !!! DEPENDENCE !!!
+//@import
+
+
+// Variables
+// #########
+$rhythm-font-size: 16px !default;
+$media-retina-ratio: 1.5 !default;
+
+$screen-mobile-cutoff: 400px !default;
+$screen-tablet-cutoff: 800px !default;
+$screen-notebook-cutoff: 1200px !default;
+$screen-hd-cutoff: 1800px !default;
+$screen-scale-map:(
+    "xs": 0,
+    "s": $screen-mobile-cutoff,
+    "m": $screen-tablet-cutoff,
+    "l": $screen-notebook-cutoff,
+    "hd": $screen-hd-cutoff
+) !default;
+
+$layout-use-device-width: false !default;
+
+
+// Helpers
+

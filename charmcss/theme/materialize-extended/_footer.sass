@@ -1,0 +1,43 @@
+@charset "UTF-8"
+
+// footer
+footer.page-footer
+    color: $footer-color
+    margin-top: 0
+    padding-top: 40px
+    .links
+        li
+            display: inline-block
+            padding: 8px 24px 8px 0
+            +scr-above($small-screen)
+                display: block
+                padding: 0
+
+
+    .col + .col
+        border-top: 2px dotted color("blue-grey", 500)
+        +scr-above($small-screen)
+            border-top: 0
+    a
+        color: $footer-link-color
+        +hover()
+            color: $footer-hover-color
+    p
+        text-wrap: none
+            font:
+                size: 12px
+    .material-icons
+        font-size: 20px
+
+    h6
+        text-transform: uppercase
+        font:
+            size: 18px
+            weight: bold
+    +scr-above($small-screen)
+        .brand-logo
+            left: 0
+            transform: translateX(0)
+        h6
+            margin-top: 24px
+            margin-bottom: 44px

@@ -1,0 +1,53 @@
+@charset "UTF-8"
+
+// ###################################
+// Cool geometric tricks
+// ###################################
+
+// !!! DEPENDENCE !!!
+//@import shortcuts
+
+
+// Usage:
+// triangle: up 10px #000
+@mixin triangle($type, $size, $color, $bgcolor: transparent)
+    width: 0
+    height: 0
+    border: $size solid $bgcolor
+    @if $type == up or $type == down-left or $type == down-right
+        border-bottom-color: $color
+    @if $type == down or $type == up-left or $type == up-right
+        border-top-color: $color
+    @if $type == left or $type == down-right or $type == up-right
+        border-right-color: $color
+    @if $type == right or $type == down-left or $type == up-left
+        border-left-color: $color
+
+//todo: ahnnnn... do again, think again...
+//Experimental
+@mixin circle($size: inherit)
+    +size($size)
+    border-radius: 50%
+
+@mixin arrow($direction:'down', $size: 20px, $color:inherit)
+    +size(0)
+    @if $direction == 'up'
+        border:
+            left: $size solid transparent
+            right: $size solid transparent
+            bottom: $size solid $color
+    @if $direction == 'down'
+        border:
+            left: $size solid transparent
+            right: $size solid transparent
+            top: $size solid $color
+    @if $direction == 'left'
+        border:
+            top: $size solid transparent
+            bottom: $size solid transparent
+            right: $size solid $color
+    @if $direction == 'right'
+        border:
+            top: $size solid transparent
+            bottom: $size solid transparent
+            left: $size solid $color

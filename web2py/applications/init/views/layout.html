@@ -1,0 +1,40 @@
+{{extend 'base.html'}}
+
+{{include 'layout/navbar.html'}}
+
+{{block header}}{{end}}
+
+{{include}}
+
+{{include 'layout/footer.html'}}
+
+<div class="signature">
+  <div class="container">
+    <div class="row">
+      <div class="col s6">
+        <a class="signature-logo" href="http://www.fikdik.com.br" target="_blank" title="{{=T('Made with care by #fikdik')}}"></a>
+      </div>
+      {{if response.locales:}}
+      <div class="input-field col s6">
+        <select class="language right" onchange="window.location=this.options[this.selectedIndex].id">
+          {{for langinfo in response.locales:}}
+            <option {{=T.accepted_language==langinfo[0] and 'selected' or ''}} {{='id='+URL(args=request.args, language=langinfo[0].replace('-','_'))}} >{{=langinfo[1]}}</option>
+          {{pass}}
+        </select>
+      </div>
+      {{pass}}
+    </div>
+  </div>
+</div>
+<div class="w2p_flash">{{=response.flash or ''}}</div>
+<div id="contact_form" class="modal">
+  <div class="modal-content">
+    {{=LOAD('plugin_mailmarketing', 'contact_form.load', ajax=True)}}
+  </div>
+</div>
+<div id="newsletter_form" class="modal">
+  <div class="modal-content">
+    {{=LOAD('plugin_mailmarketing', 'newsletter_form.load', ajax=True)}}
+  </div>
+</div>
+{{=response.livereload}}

@@ -1,0 +1,25 @@
+@charset "UTF-8"
+
+// ###########################
+// Faster Faster
+// ###########################
+
+@mixin loader($type, $color-1, $color-2, $bg-color:$white, $duration:1.5s)
+    +absolute(center)
+    +size(100%)
+    &::before,&::after
+        +absolute(center)
+        +size(50px)
+        content: ''
+        border: 4px solid
+        border-radius: 50%
+    &::before
+        +fallback-color($color-2, $bg-color)
+    &::after
+        border-color: transparent
+        border-bottom-color: $color-1
+        animation: rotate $duration infinite linear
+
+    @keyframes rotate
+        100%
+            transform: rotate(360deg)

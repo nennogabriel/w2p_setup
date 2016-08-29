@@ -1,0 +1,105 @@
+@charset "UTF-8";
+
+// ##############################
+// There is a fallback for fonts
+// ##############################
+
+// inspired by http://www.designer-daily.com/10-fonts-that-are-safe-to-use-with-css-34474
+// and code school course "Fundamentals of design"
+// start the safes with an google web font for linux users like me.
+
+$-fonts-map: (
+    "serif": (
+        "humanist" : (
+            "PT Serif",
+            "Baskerville",
+            "Baskerville Old Face",
+            "Goudy Old Style",
+            "Garamond",
+            "Times New Roman",
+            serif
+        ),
+        "transitional":(
+            "Vollkorn",
+            "Palatino",
+            "Palatino LT STD",
+            "Palatino Linotype",
+            "Book Antiqua",
+            "Georgia",
+            serif
+        ),
+        "modern":(
+            "Prociono",
+            "Bodoni MT",
+            "Didot",
+            "Didot LT STD",
+            "Book Antiqua",
+            "Garamond",
+            "Times New Roman",
+            serif
+        ),
+        "slab":(
+            "Josefin Slab",
+            "Georgia",
+            "Times",
+            "Times New Roman",
+            serif
+        )
+    ),
+    "sans-serif": (
+        "humanist" : (
+            "Open Sans",
+            "Tahoma",
+            "Verdana",
+            "Segoe",
+            sans-serif
+        ),
+        "transitional":(
+            "Ubuntu",
+            "Trebuchet MS",
+            "Lucida Grande",
+            "Lucida Sans Unicode",
+            "Lucida Sans",
+            sans-serif
+        ),
+        "geometric":(
+            "Josefin Sans",
+            "Century Gothic",
+            "CenturyGothic",
+            "Geneva",
+            "AppleGothic",
+            sans-serif
+        ),
+    ),
+    "other": (
+        "monospace": (
+            "Lato",
+            "Consolas",
+            "Menlo",
+            "Monaco",
+            monospace
+        ),
+        "typewriter": (
+            "Lato",
+            "Lucida Sans Typewriter",
+            "Lucida Console",
+            "Menlo",
+            "Monaco",
+            "Bitstream Vera Sans Mono",
+            monospace
+        )
+    )
+) !default;
+
+
+//todo: make load fonts safer and easy
+
+@function safe-font($group, $type, $font-name: null) {
+    $_map: map_get($-fonts-map, $group);
+    @if $font-name {
+        @return join(($font-name), map_get($_map, $type));
+    }
+    @return map_get($_map, $type);
+}
+
+

@@ -1,0 +1,54 @@
+@charset "UTF-8"
+
+// ###########################
+// shorter, faster is (yoda)
+// ###########################
+
+// !!! DEPENDENCY !!!
+//@import math
+
+// *** Variables ***
+$round-precision: (max: 3, px: 0, pt: 0, deg: 0, s: 0, em: 3, rem: 3, "%": 2) !default
+
+
+@function round-to($number, $digit: 0, $mode: round)
+    // $number must be a number
+    @if type-of($number) != number
+        @warn "#{$number} is not a number."
+        @return $number
+
+    $_n: pow(10, abs($digit))
+    $_new: if($digit > 0, $number * $_n, $number / $_n)
+
+    @if $mode == round
+        $_new: round($_new)
+    @else if $mode == ceil
+        $_new: ceil($_new)
+    @else if $mode == floor
+        $_new: floor($_new)
+    @else
+        @warn "Modes are 'round', 'ceil' or 'floor'"
+        @return $number
+    @return if($digit > 0, $_new / $_n, $_new * $_n)
+
+
+// Short round with precision config
+@function r($number, $digit: false, $mode: round)
+    @if $digit
+        @return round-to($number, $digit, $mode)
+    @else if unitless($number)
+        $digit: map_get($round-precision, "max")
+    @else
+        $digit: map_get($round-precision, unit($number))
+    @return round-to($number, $digit, $mode)
+
+
+// Round around
+@function round-list($list)
+    $_new_list: ()
+    @each $_i in $list
+        $_val: if(type_of($_i) == "number", r($_i), $_i)
+        $_new_list: append($_new_list, $_val)
+    @return $_new_list
+
+

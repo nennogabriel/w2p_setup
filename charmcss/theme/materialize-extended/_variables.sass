@@ -1,0 +1,56 @@
+@charset "UTF-8"
+
+$static-path: '/static/' !default
+$cdn-path: 'http://cdn.fikdik.com.br/' !default
+
+$brand-colors: ("primary": $-color-blue-grey , "secondary": $-color-grey) !default
+
+$-color-list: map_merge($-color-list, $brand-colors)
+
+$primary-color: color("blue-grey",  500) !default
+$secondary-color: color("blue-grey", 700) !default
+
+$link-color: color("light-blue", 600) !default
+
+$small-screen: 600px !default
+$medium-screen: 992px !default
+$large-screen: 1200px !default
+$maximum-screen: 1600px !default
+
+// logo
+$brand-size: 56px !default
+$brand-size-medium: 64px !default
+$brand-size-large: 80px !default
+$brand-padding: 12px 0 !default
+
+// social links
+$social-links-names: facebook, flickr, instagram, googleplus, linkedin, printrest, feed, skype, twitter, vimeo, youtube !default
+$social-links-url: $cdn-path + 'btn-social-A1-572x156.png' !default
+$social-link-size: 44px !default
+$social-link-bg-color: transparent !default
+
+// Navbar
+$navbar-link-color: color("primary", 50) !default
+$navbar-bg-color: color("primary", 500) !default
+$navbar-button-collapse: color("secondary", 200) !default
+
+$navbar-small-color: color("secondary", 200) !default
+$navbar-small-bg-color: color("primary", 900) !default
+$navbar-small-link-color: color("primary", 100) !default
+$navbar-small-hover-color: color("primary", 300) !default
+
+$sidenav-font-color: #222 !default
+$sidenav-bg-color: #fff !default
+$sidenav-padding-right: 30px !default
+$sidenav-item-height: 64px !default
+
+// footer
+$footer-color: color("secondary", 100) !default
+$footer-bg-color: color("primary", 800) !default
+$footer-link-color: color("primary", 100) !default
+$footer-hover-color: color("primary", 300) !default
+
+
+// Fikdik Signature
+$footer-signature-color: $white !default
+$footer-signature-bg-color : color("primary", 800) !default

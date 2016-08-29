@@ -1,0 +1,32 @@
+@charset "UTF-8"
+
+// ###########################
+// to pixel or not to pixel
+// thats a question
+// ###########################
+
+
+// Remove any unit to number
+@function unit-strip($number)
+    @if type-of($number) == 'number'
+        @return $number / ($number * 0 + 1)
+    @warn '#{$number} is not a number.'
+    @return $number
+
+
+// Remove possible mess from "*"
+@function unit-fix($number)
+    $_unit: quote(unit($number))
+    $_num: unit-strip($number)
+    @while str-index($_unit, "*")
+        $_i: str-index($_unit, "*")
+        $_unit: str-slice($_unit, $_i + 1)
+    @return $_num + $_unit
+
+
+// Simples as name
+@function unit-to($number, $type:'')
+    @if type-of($number) == 'number'
+        @return unit-strip($number) + $type
+    @warn '#{$number} is not a number.'
+    @return $number
