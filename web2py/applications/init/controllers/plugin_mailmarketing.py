@@ -3,8 +3,6 @@
 # A pieace of Seal Works applications
 
 from plugin_webtools.forms import ANTISPAMFORM
-from plugin_webtools.render import html_minify
-
 
 @auth.requires(lambda: auth.has_membership('app_admin'))
 def _ah():
@@ -35,7 +33,7 @@ def contact_form():
         return dict(message=message)
     elif form.errors:
         response.flash = T("Something is wrong. Please review the form.")
-    return html_minify(dict(form=form))
+    return dict(form=form)
 
 
 def newsletter_form():
@@ -48,5 +46,5 @@ def newsletter_form():
         return dict(message = message)
     elif form.errors:
         response.flash = T("Something is wrong. Please review the form.")
-    return html_minify(dict(form=form))
+    return dict(form=form)
 
