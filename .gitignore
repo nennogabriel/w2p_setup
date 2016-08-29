@@ -190,3 +190,7 @@ web2py/deposit/
 web2py/welcome.w2p
 web2py/parameters_*.py
 tmp/
+web2py/applications/init/cron/
+web2py/applications/init/errors/
+web2py/applications/init/sessions/
+web2py/applications/init/uploads/
