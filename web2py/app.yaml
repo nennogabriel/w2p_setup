@@ -55,6 +55,8 @@ skip_files: |
  (app\.yml)|
  (index\.yaml)|
  (index\.yml)|
+ (00_local/.*)|
+ (00_local.*)|
  (#.*#)|
  (.*~)|
  (.*\.py[co])|
@@ -88,3 +90,7 @@ builtins:
 - appstats: on
 - admin_redirect: on
 - deferred: on
+
+libraries:
+- name: PIL
+  version: "1.1.7"
