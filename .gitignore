@@ -199,4 +199,4 @@ web2py/applications/init/uploads/
 web2py/applications/init/private/
 web2py/applications/init/00_local/
 web2py/applications/init/static/
-
+web2py/applications/init/views/inline/

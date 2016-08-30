@@ -9,11 +9,21 @@ var gulp   = require('gulp'),
 
 gulp.task("favicon", function () {
     gulp.src(config.folder.local + "static/icon.png")
+        .pipe(imageResize( squareSize(32)))
+        .pipe(imagemin({ progressive: true, interlaced: true}))
+        .pipe(rename(function (path){
+            path.basename = "favicon";
+            path.extname = ".ico";
+            path.dirname = "./static/";
+            console.log(path);
+        }))
+        .pipe(gulp.dest(config.folder.base));
+    gulp.src(config.folder.local + "static/icon.png")
         .pipe(imageResize( squareSize(192)))
         .pipe(imagemin({ progressive: true, interlaced: true}))
         .pipe(rename(function (path){
             path.basename = "chrome-touch-icon-192x192";
-            path.dirname = path.dirname.replace("00_local/", "");
+            path.dirname = "./static/";
         }))
         .pipe(gulp.dest(config.folder.base));
     gulp.src(config.folder.local + "static/icon.png")
@@ -21,7 +31,7 @@ gulp.task("favicon", function () {
         .pipe(imagemin({ progressive: true, interlaced: true}))
         .pipe(rename(function (path){
             path.basename = "apple-touch-icon";
-            path.dirname = path.dirname.replace("00_local/", "");
+            path.dirname = "./static/";
         }))
         .pipe(gulp.dest(config.folder.base));
     gulp.src(config.folder.local + "static/icon.png")
@@ -29,16 +39,7 @@ gulp.task("favicon", function () {
         .pipe(imagemin({ progressive: true, interlaced: true}))
         .pipe(rename(function (path){
             path.basename = "ms-touch-icon-144x144-precomposed";
-            path.dirname = path.dirname.replace("00_local/", "");
+            path.dirname = "./static/";
         }))
         .pipe(gulp.dest(config.folder.base));
-    gulp.src(config.folder.local + "static/icon.png")
-        .pipe(imageResize( squareSize(32)))
-        .pipe(imagemin({ progressive: true, interlaced: true}))
-        .pipe(rename(function (path){
-            path.basename = "favicon";
-            path.extname = ".ico";
-            path.dirname = path.dirname.replace("00_local/", "");
-        }))
-        .pipe(gulp.dest(config.folder.base))
 });
