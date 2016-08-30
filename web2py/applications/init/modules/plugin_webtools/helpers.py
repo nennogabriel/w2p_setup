@@ -10,3 +10,4 @@ class MDI(DIV):
             self.attributes['_class'] = 'material-icons ' + self.attributes['_class']
         else:
             self.attributes['_class'] = 'material-icons '
+
