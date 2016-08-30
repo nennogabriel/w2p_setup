@@ -151,8 +151,7 @@
           eval(decodeURIComponent(command));
         }
         if(flash) {
-          // web2py.flash(decodeURIComponent(flash));
-          Materialize.toast(decodeURI(flash), 4000);
+          web2py.flash(decodeURIComponent(flash));
         }
       },
       event_handlers: function() {
@@ -539,10 +538,11 @@
       },
       /*helper for flash messages*/
       flash: function(message, status) {
-        var flash = $('.w2p_flash');
-        web2py.hide_flash();
-        flash.html(message).addClass(status);
-        if(flash.html()) flash.append('<span id="closeflash"> &times; </span>').slideDown();
+        Materialize.toast(message, 400);
+        // var flash = $('.w2p_flash');
+        // web2py.hide_flash();
+        // flash.html(message).addClass(status);
+        // if(flash.html()) flash.append('<span id="closeflash"> &times; </span>').slideDown();
       },
       hide_flash: function() {
         $('.w2p_flash').fadeOut(0).html('');
