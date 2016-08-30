@@ -4,7 +4,7 @@ var w2p_ajax_disable_with_message = "{{=T('Working...')}}";
 var w2p_ajax_date_format = "{{=T('%Y-%m-%d')}}";
 var w2p_ajax_datetime_format = "{{=T('%Y-%m-%d %H:%M:%S')}}";
 var ajax_error_500 = "{{=T.M('An error occured, please [[reload %s]] the page') % URL(args=request.args, vars=request.get_vars) }}"
-{{include 'layout/inline.js'}}
+{{include 'inline/head.js'}}
 
 tal.load("https://fonts.googleapis.com/icon?family=Material+Icons", "material-icons");
 tal.load("https://fonts.googleapis.com/css?family=Noto+Sans:400,700", "google-fonts");
