@@ -192,6 +192,7 @@ web2py/parameters_*.py
 tmp/
 web2py/applications/init/cron/
 web2py/applications/init/errors/
+web2py/applications/init/databases/
 web2py/applications/init/sessions/
 web2py/applications/init/uploads/
 web2py/applications/init/private/auth.key
