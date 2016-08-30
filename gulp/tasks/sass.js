@@ -9,7 +9,7 @@ var gulp   = require('gulp'),
 
 
 gulp.task("sass", function(){
-    gulp.src( config.folder.local + "*/{css,style}/[^_]*.{sass,scss}")
+    gulp.src( config.folder.local + "*/{css,inline}/[^_]*.{sass,scss}")
         .pipe(plumber())
         .pipe(sass({includePaths : ['./']}))
         .pipe(autoprefixer( autoprefixeroptions ))

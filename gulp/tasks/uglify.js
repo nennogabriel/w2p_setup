@@ -9,7 +9,7 @@ var gulp   = require('gulp'),
 
 // Concatenate, compile and ulgify JS
 gulp.task("uglify", function(){
-    gulp.src(config.folder.local + "*/{js,script,layout}/[^_]*.js")
+    gulp.src(config.folder.local + "*/{js,script,inline}/[^_]*.js")
         // .pipe(plumber())
         .pipe(include())
         .on("error", console.log)
