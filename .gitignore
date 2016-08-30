@@ -195,4 +195,4 @@ web2py/applications/init/errors/
 web2py/applications/init/databases/
 web2py/applications/init/sessions/
 web2py/applications/init/uploads/
-web2py/applications/init/private/auth.key
+web2py/applications/init/private/
