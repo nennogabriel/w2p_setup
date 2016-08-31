@@ -42,21 +42,27 @@ class EXISTS(object):
             return (value, None)
         return (value, self.error_message)
 
-
+@auth.requires(lambda: auth.has_membership('app_admin'))
 def index():
     regex = re.compile('^\w+$')
     apps = sorted(
         file for file in os.listdir(apath(r=request)) if regex.match(file))
     form = SQLFORM.factory(
-        Field('appcfg', default=GAE_APPCFG, label=T('Path to appcfg.py'),
-              requires=EXISTS(error_message=T('file not found'))),
-        Field('google_application_id', requires=IS_MATCH(
-            '[\w\-]+'), label=T('Google Application Id')),
+        Field('appcfg',
+              default=GAE_APPCFG,
+              label=T('Path to appcfg.py'),
+              requires=EXISTS(error_message=T('file not found'))
+              ),
+        Field('google_application_id',
+
+              requires=IS_MATCH('[\w\-]+'),
+              label=T('Google Application Id')
+              ),
         Field('applications', 'list:string',
               requires=IS_IN_SET(apps, multiple=True),
               label=T('web2py apps to deploy')),
         Field('email', requires=IS_EMAIL(), label=T('GAE Email')),
-        Field('password', 'password', requires=IS_NOT_EMPTY(), label=T('GAE Password')))
+        )
     cmd = output = errors = ""
     if form.accepts(request, session):
         try:
@@ -66,10 +72,12 @@ def index():
         ignore_apps = [item for item in apps
                        if not item in form.vars.applications]
         regex = re.compile('\(applications/\(.*')
+
         yaml = apath('../app.yaml', r=request)
         if not os.path.exists(yaml):
             example = apath('../app.example.yaml', r=request)
             shutil.copyfile(example, yaml)
+
         data = read_file(yaml)
         data = re.sub('application:.*', 'application: %s' %
                       form.vars.google_application_id, data)
@@ -85,7 +93,7 @@ def index():
                                                           stdin=s.PIPE,
                                                           stdout=s.PIPE,
                                                           stderr=s.PIPE, close_fds=True), -1)
-        p.stdin.write(form.vars.password + '\n')
+        # p.stdin.write(form.vars.password + '\n')
         fcntl.fcntl(p.stdout.fileno(), fcntl.F_SETFL, os.O_NONBLOCK)
         fcntl.fcntl(p.stderr.fileno(), fcntl.F_SETFL, os.O_NONBLOCK)
     return dict(form=form, command=cmd)
