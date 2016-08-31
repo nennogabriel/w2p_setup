@@ -23,12 +23,12 @@
     background: url($cdn-path + 'sprites/fikdik.png')
     background-size: auto (24px*3)
     @if (lightness($footer-signature-bg-color) > 65)
-        background-position: 0 48px
+        background-position: 0 -48px
     @else
         background-position: 0 0
     //transition: transform .4s ease
     opacity: .8
     +hover()
-        background-position: 0 24px
+        background-position: 0 -24px
         //transform: scale(1.4) translateX(12%)
         opacity: 1

@@ -17,7 +17,7 @@ default_expiration: "24h"   # for static files
 
 handlers:
 
-# Warning! Static mapping - below - isn't compatible with 
+# Warning! Static mapping - below - only compatible with
 # the parametric router's language logic. 
 # You cannot use them together.
 
