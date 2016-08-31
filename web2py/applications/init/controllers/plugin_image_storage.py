@@ -9,7 +9,7 @@ def thumb():
 
 
 @auth.requires(lambda: auth.has_membership('app_admin'))
-def _ah():
+def index():
     response.view = 'generic.html'
     grid = SQLFORM.smartgrid(db.image_storage)
     return dict(grid=grid)
