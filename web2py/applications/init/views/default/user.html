@@ -1,12 +1,11 @@
 {{extend 'layout.html'}}
 
-<h2>
-{{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}
-</h2>
-
 <div class="container">
     <div class="row">
-        <div id="web2py_user_form" class="col-lg-6">
+        <div class="col s12 center">
+          <h2>{{=T('Sign Up') if request.args(0) == 'register' else T('Log In') if request.args(0) == 'login' else T(request.args(0).replace('_',' ').title())}}</h2>
+        </div>
+        <div id="web2py_user_form" class="col m6 offset-m3">
         {{
         if request.args(0)=='login':
             if not 'register' in auth.settings.actions_disabled:
@@ -25,11 +24,13 @@
 
 {{block page_js}}
 <script>
+  tal.ready("jquery", function () {
     jQuery("#web2py_user_form input:visible:enabled:first").focus();
-{{if request.args(0)=='register':}}
-    web2py_validate_entropy(jQuery('#auth_user_password'),100);
-{{elif request.args(0)=='change_password':}}
-    web2py_validate_entropy(jQuery('#no_table_new_password'),100);
-{{pass}}
+    {{if request.args(0)=='register':}}
+      web2py_validate_entropy(jQuery('#auth_user_password'),100);
+    {{elif request.args(0)=='change_password':}}
+      web2py_validate_entropy(jQuery('#no_table_new_password'),100);
+    {{pass}}
+  });
 </script>
 {{end page_js}}

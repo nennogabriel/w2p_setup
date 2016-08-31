@@ -29,6 +29,8 @@ if [ -d "./web2py/applications/init/static" ]
         cp -rf "./web2py/applications/init/static.example" "./web2py/applications/init/static"
 fi
 
+
+
 # Gulp is always good
 gulp sass
 gulp uglify

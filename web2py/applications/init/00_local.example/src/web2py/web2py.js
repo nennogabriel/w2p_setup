@@ -230,11 +230,11 @@
           var redirect = xhr.getResponseHeader('web2py-redirect-location');
           if(redirect !== null) {
             window.location = redirect;
-          };
+          }
           /* run this here only if this Ajax request is NOT for a web2py component. */
           if(xhr.getResponseHeader('web2py-component-content') == null) {
             web2py.after_ajax(xhr);
-          };
+          }
         });
 
         doc.ajaxError(function(e, xhr, settings, exception) {
@@ -404,10 +404,10 @@
       },
       calc_entropy: function(mystring) {
         /* calculate a simple entropy for a given string */
-        var csets = new Array(
+        var csets = [
           'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
           '0123456789', '!@#$\%^&*()', '~`-_=+[]{}\|;:\'",.<>?/',
-          '0123456789abcdefghijklmnopqrstuvwxyz');
+          '0123456789abcdefghijklmnopqrstuvwxyz'];
         var score = 0,
           other = {},
           seen = {},
@@ -458,7 +458,7 @@
           myfield.css('background-color', color);
           entropy_callback = myfield.data('entropy_callback');
           if(entropy_callback) entropy_callback(v);
-        }
+        };
         if(!myfield.hasClass('entropy_check')) myfield.on('keyup', validator).on('keydown', validator).addClass('entropy_check');
       },
       web2py_websocket: function(url, onmessage, onopen, onclose) {
@@ -538,7 +538,7 @@
       },
       /*helper for flash messages*/
       flash: function(message, status) {
-        Materialize.toast(message, 400);
+        Materialize.toast(message, 3000);
         // var flash = $('.w2p_flash');
         // web2py.hide_flash();
         // flash.html(message).addClass(status);
@@ -701,9 +701,9 @@
         $.web2py.component_handler(target);
       },
       main_hook: function() {
-        var flash = $('.w2p_flash');
-        flash.hide();
-        if(flash.html()) web2py.flash(flash.html());
+        // var flash = $('.w2p_flash');
+        // flash.hide();
+        // if(flash.html()) web2py.flash(flash.html());
         web2py.ajax_init(document);
         web2py.event_handlers();
         web2py.a_handlers();

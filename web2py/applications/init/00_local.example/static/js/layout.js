@@ -32,9 +32,9 @@ $('a.btn, button.btn, .btn-large, .nav a.button-collapse').addClass('waves-effec
 
 $("body").velocity({opacity: 1, animation: 'none'}, {duration: 500});
 
-//=require web2py/web2py.js
+//=require ../../src/web2py/web2py.js
 $('.w2p-toolbar-hidden').hide();
-//=require load/images.js
+//=require ../../src/load/images.js
 
 $(document).ready(function(){
     $("img[data-src]").unveil(100);
