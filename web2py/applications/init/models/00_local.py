@@ -16,3 +16,4 @@ except BaseException:
     from setup_helpers import create_default_config
     create_default_config()
     appconfig = AppConfig(reload=request.is_local)
+
