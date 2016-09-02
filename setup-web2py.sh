@@ -17,16 +17,23 @@ fi
 
 if [ -d "./web2py/applications/init/00_local" ]
     then
-        echo "init/00_local folder already setup"
+        echo "init/00_local folder already exists"
     else
         cp -rf "./web2py/applications/init/00_local.example" "./web2py/applications/init/00_local"
 fi
 
 if [ -d "./web2py/applications/init/static" ]
     then
-        echo "init/static folder already setup"
+        echo "init/static folder already exists"
     else
         cp -rf "./web2py/applications/init/static.example" "./web2py/applications/init/static"
+fi
+
+if [ -d "./web2py/app.yaml" ]
+    then
+        echo "app.yaml already exists"
+    else
+        cp "./web2py/app.example.yaml" "./web2py/app.yaml"
 fi
 
 

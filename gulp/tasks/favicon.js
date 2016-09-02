@@ -15,7 +15,6 @@ gulp.task("favicon", function () {
             path.basename = "favicon";
             path.extname = ".ico";
             path.dirname = "./static/";
-            console.log(path);
         }))
         .pipe(gulp.dest(config.folder.base));
     gulp.src(config.folder.local + "static/icon.png")
