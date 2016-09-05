@@ -27,7 +27,7 @@ else:
              pool_size=appconfig.get('db.pool_site'),
              migrate_enabled=appconfig.get('db.migrate'),
              check_reserved=appconfig.get('db.migrate') and ['all'] or None,
-             lazy_tables=True)
+             lazy_tables=not request.is_local)
 
 from extended.tools import Mail, Auth
 from gluon.tools import Service, PluginManager

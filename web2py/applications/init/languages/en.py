@@ -1,4 +1,4 @@
-# coding: utf8
+# -*- coding: utf-8 -*-
 {
 '!langcode!': 'en',
 '!langname!': 'English',
@@ -36,6 +36,7 @@
 'Download': 'Download',
 'E-mail': 'E-mail',
 'Email and SMS': 'Email and SMS',
+'Enter an integer between %(min)g and %(max)g': 'Informe um valor inteiro entre %(min)g e %(max)g',
 'enter an integer between %(min)g and %(max)g': 'enter an integer between %(min)g and %(max)g',
 'enter date and time as %(format)s': 'enter date and time as %(format)s',
 'Errors': 'Errors',
